@@ -108,14 +108,14 @@ async function run() {
             res.send(result)
 
         })
-        //getting data with email
-        app.get('/products/:email', async (req, res) => {
-            const email = req?.query?.email
-            const query = {"email":email}
-            const cursor = collection.find(query);
-            const result = await cursor.toArray();
-            res.send(result)
-        })
+        // //getting data with email
+        // app.get('/products/:email', async (req, res) => {
+        //     const email = req?.query?.email
+        //     const query = {"email":email}
+        //     const cursor = collection.find(query);
+        //     const result = await cursor.toArray();
+        //     res.send(result)
+        // })
     }
 
     finally {
