@@ -3,6 +3,7 @@ const cors = require('cors');
 const app = express();
 const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 const port = process.env.PORT || 5000
+// const port = process.env.PORT
 require('dotenv').config()
 
 
@@ -40,6 +41,17 @@ async function run() {
             res.send(data)
 
         })
+
+        //getting data with email
+        app.get('/productsByEmail', async (req, res) => {
+            const email = req?.query?.email
+            const query = {"email":email}
+            const cursor = collection.find(query);
+            const result = await cursor.toArray();
+            res.send(result)
+        })
+
+
         //adding data from client
         app.post('/products', async (req, res) => {
             const newProduct = req.body;
@@ -108,14 +120,7 @@ async function run() {
             res.send(result)
 
         })
-        // //getting data with email
-        // app.get('/products/:email', async (req, res) => {
-        //     const email = req?.query?.email
-        //     const query = {"email":email}
-        //     const cursor = collection.find(query);
-        //     const result = await cursor.toArray();
-        //     res.send(result)
-        // })
+        
     }
 
     finally {
